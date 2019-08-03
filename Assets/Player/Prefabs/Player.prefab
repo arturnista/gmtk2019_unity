@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4572094103397285851}
   - component: {fileID: 4572094103397285852}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Sprites
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 2604868120320234591}
   - component: {fileID: 6808620579313107620}
   - component: {fileID: 659258165303850076}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,4 +198,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 3648521139186694778, guid: c23a2cbd308f8644c806a20637938c27,
     type: 3}
-  cooldown: 0.4
+  cooldown: 0.2

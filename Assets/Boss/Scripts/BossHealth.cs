@@ -2,37 +2,60 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public struct BossStage
+{
+    public int Health;
+    public Sprite Sprite;
+    public Color Color;
+}
+
 public class BossHealth : MonoBehaviour, IHealth
 {
     
     [SerializeField]
-    public int totalHealthPoints;
+    private List<BossStage> stages;
+    public int CurrentStage { get; private set; }
 
     private SpriteRenderer spriteRenderer;
 
+    private BossAttackHandler attackHandler;
+
     private int currentHealthPoints;
     
-    public int TotalHealthPoints { get { return totalHealthPoints; } }
+    public int TotalHealthPoints { get { return 0; } }
     public int CurrentHealthPoints { get { return currentHealthPoints; } }
 
     private Coroutine displayCycleCoroutine;
     private Color originalColor;
 
+    private bool isImmortal;
+
     void Awake()
     {
-        currentHealthPoints = totalHealthPoints;
+        CurrentStage = 0;
+        currentHealthPoints = stages[CurrentStage].Health;
 
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        originalColor = spriteRenderer.color;
+        attackHandler = GetComponent<BossAttackHandler>();
+    }
+
+    void Start()
+    {
+        CurrentStage = -1;
+        NextStage();
     }
 
     public void DealDamage(int damage, Transform damager)
     {
+        if(isImmortal) return;
+
         currentHealthPoints -= damage;
 
         if (currentHealthPoints <= 0) 
         {
-            Destroy(this.gameObject);
+            isImmortal = true;
+            StartCoroutine(ChangeStageCycle());
         }
         else
         {
@@ -41,6 +64,51 @@ public class BossHealth : MonoBehaviour, IHealth
 
         }
 
+    }
+
+    IEnumerator ChangeStageCycle()
+    {
+
+        attackHandler.enabled = false;
+
+        float changeStageTime = 2f;
+        float amount = 10;
+
+        float time = changeStageTime / amount;
+
+        for (int i = 0; i < amount; i++)
+        {
+            if(i % 2 == 0) 
+            {
+                spriteRenderer.color = stages[CurrentStage].Color;
+                spriteRenderer.sprite = stages[CurrentStage].Sprite;
+            }
+            else
+            {
+                spriteRenderer.color = stages[CurrentStage + 1].Color;
+                spriteRenderer.sprite = stages[CurrentStage + 1].Sprite;
+            }
+
+            yield return new WaitForSeconds(time);
+        }
+
+        NextStage();
+
+        isImmortal = false;
+        attackHandler.enabled = true;
+
+    }
+
+    void NextStage()
+    {
+        CurrentStage += 1;
+        attackHandler.ChangeStage(CurrentStage);
+
+        currentHealthPoints = stages[CurrentStage].Health;
+        spriteRenderer.color = stages[CurrentStage].Color;
+        spriteRenderer.sprite = stages[CurrentStage].Sprite;
+
+        originalColor = spriteRenderer.color;
     }
 
     IEnumerator DamageDisplayCycle()

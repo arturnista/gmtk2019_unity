@@ -4,17 +4,33 @@ using UnityEngine;
 
 public class SwordCicleBossAttack : MonoBehaviour, IBossAttack
 {
+
+    public bool Finished { get; private set; }
+
+    [SerializeField]
+    private int stage;
+    public int Stage { get { return stage; } }
     [SerializeField]
     private GameObject swordPrefab;
     [SerializeField]
     private int amount = 5;
 
+    private PlayerHealth playerHealth;
+
+    void Start()
+    {
+        playerHealth = GameObject.FindObjectOfType<PlayerHealth>();
+    }
+
     public void Attack()
     {
 
+        Finished = false;
 
         float angleBase = 360f / amount;
-        float initialAngle = Random.Range(0f, 360f);
+        
+        Vector2 playerDirection = (playerHealth.transform.position - transform.position).normalized;
+        float initialAngle = Mathf.Atan2(playerDirection.y, playerDirection.x) * Mathf.Rad2Deg;
 
         for (int i = 0; i < amount; i++)
         {
@@ -32,6 +48,13 @@ public class SwordCicleBossAttack : MonoBehaviour, IBossAttack
 
         }
 
+        Invoke("FinishAttack", 1.3f);
+
+    }
+
+    void FinishAttack()
+    {
+        Finished = true;        
     }
 
 }

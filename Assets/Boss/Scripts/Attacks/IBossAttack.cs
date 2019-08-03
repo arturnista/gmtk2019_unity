@@ -5,6 +5,8 @@ using UnityEngine;
 public interface IBossAttack
 {
     
+    int Stage { get; }
+    bool Finished { get; }
     void Attack();
 
 }

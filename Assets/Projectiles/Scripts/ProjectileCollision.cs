@@ -6,16 +6,16 @@ public class ProjectileCollision : MonoBehaviour
 {
 
     [SerializeField]
-    private GameObject explosionPrefab;
+    protected GameObject explosionPrefab;
     [SerializeField]
-    private float speed;
+    protected float speed;
     [SerializeField]
-    private int attackDamage;
+    protected int attackDamage;
 
     [SerializeField]
-    private float delay = 0f;
+    protected float delay = 0f;
 
-    private new Rigidbody2D rigidbody2D;
+    protected new Rigidbody2D rigidbody2D;
 
     void Awake()
     {
@@ -25,7 +25,7 @@ public class ProjectileCollision : MonoBehaviour
         else Throw();
     }
 
-    void Throw()
+    protected virtual void Throw()
     {
         rigidbody2D.velocity = transform.right * speed;
     }

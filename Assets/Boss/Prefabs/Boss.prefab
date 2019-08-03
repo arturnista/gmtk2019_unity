@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4617282353817569370}
   - component: {fileID: 6106312368737155620}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,8 +96,12 @@ GameObject:
   - component: {fileID: 6758186537118208515}
   - component: {fileID: 1399984201164476209}
   - component: {fileID: 3452250080826673722}
+  - component: {fileID: 4763109899402280414}
   - component: {fileID: 3802592057557949864}
-  m_Layer: 0
+  - component: {fileID: 6092418906510786452}
+  - component: {fileID: 2214645251725556735}
+  - component: {fileID: 1822863645022554536}
+  m_Layer: 19
   m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +172,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 943655619a7e7c0448cd8bf798371ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalHealthPoints: 5000
+  stages:
+  - Health: 25
+    Sprite: {fileID: -6002157571523280566, guid: 70a1aa3a3fc80214585f4c0ab9aea46d,
+      type: 3}
+    Color: {r: 1, g: 1, b: 1, a: 1}
+  - Health: 50
+    Sprite: {fileID: 450357103052299746, guid: 70a1aa3a3fc80214585f4c0ab9aea46d, type: 3}
+    Color: {r: 0, g: 0.77698135, b: 1, a: 1}
+  - Health: 150
+    Sprite: {fileID: -782693673867131832, guid: 70a1aa3a3fc80214585f4c0ab9aea46d,
+      type: 3}
+    Color: {r: 0.4433962, g: 0, b: 0.37310642, a: 1}
+  - Health: 250
+    Sprite: {fileID: -7017652878900891732, guid: 70a1aa3a3fc80214585f4c0ab9aea46d,
+      type: 3}
+    Color: {r: 0.04454082, g: 0.6698113, b: 0, a: 1}
+  - Health: 500
+    Sprite: {fileID: 7012289439761142941, guid: 70a1aa3a3fc80214585f4c0ab9aea46d,
+      type: 3}
+    Color: {r: 1, g: 0.8, b: 0, a: 1}
 --- !u!114 &1399984201164476209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,8 +220,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minAttackDelay: 1
   maxAttackDelay: 5
-  meleeAttackPrefab: {fileID: 3026395558645232627, guid: ecae6ba18baf8394e8f91eded4b189fc,
+  contactDamage: 1
+--- !u!114 &4763109899402280414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3786819218847601992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aa4bf87d7607d74b8e17823ff30a24e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stage: 0
+  swordPrefab: {fileID: 5253129032828781792, guid: b7a58721569636841a11d9bdbaa49f8e,
     type: 3}
+  amount: 3
 --- !u!114 &3802592057557949864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,6 +249,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38c5248234c027640ba5eed76a31f4c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stage: 0
   swordPrefab: {fileID: 5253129032828781792, guid: 2313265dac651e94ca061169ce240534,
     type: 3}
-  amount: 5
+  amount: 7
+--- !u!114 &6092418906510786452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3786819218847601992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e850e5636d40384c9a02bb451a74254, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stage: 1
+  damage: 1
+--- !u!114 &2214645251725556735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3786819218847601992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9c1939cdbbf61b45a34b4c3e8c514b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stage: 1
+  swordPrefab: {fileID: 5253129032828781792, guid: 2313265dac651e94ca061169ce240534,
+    type: 3}
+  amount: 14
+--- !u!114 &1822863645022554536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3786819218847601992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39bb3bd0568cfd04bb5aa8bf9a15eddb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stage: 1
+  spikePrefab: {fileID: 0}
+  amount: 3
+  mapSize: {x: 0, y: 0}

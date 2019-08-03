@@ -17,6 +17,11 @@ public class PlayerHealth : MonoBehaviour, IHealth
     PlayerMovement playerMovement;
     PlayerAttack playerAttack;
     Vector3 playerPosition;
+
+    private SpriteRenderer spriteRenderer;
+    private Color originalColor;
+
+    private bool isImmortal;
     
     public int TotalHealthPoints { get { return totalHealthPoints; } }
     public int CurrentHealthPoints { get { return currentHealthPoints; } }
@@ -26,12 +31,14 @@ public class PlayerHealth : MonoBehaviour, IHealth
 
         currentHealthPoints = totalHealthPoints;
 
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
+
         playerMovement = GetComponent<PlayerMovement>();
         
         playerAttack = GetComponent<PlayerAttack>();
 
         rigidbody2d = GetComponent<Rigidbody2D>();
-
 
     }
 
@@ -42,6 +49,8 @@ public class PlayerHealth : MonoBehaviour, IHealth
 
     public void DealDamage(int damage, Transform damager)
     {
+        if(isImmortal) return;
+
         currentHealthPoints -= damage;
         StartCoroutine(FreezeMovementAndAttack(damager.position));
 
@@ -58,18 +67,33 @@ public class PlayerHealth : MonoBehaviour, IHealth
 
     IEnumerator FreezeMovementAndAttack(Vector3 enemyPosition)
     {
+        isImmortal = true;
 
         playerPosition = transform.position;
         Vector3 impuseDirection = playerPosition - enemyPosition;
         playerMovement.enabled = false;
         playerAttack.enabled = false;
-        rigidbody2d.velocity = Vector3.zero;
-        rigidbody2d.AddForce(impuseDirection*impulseForce, ForceMode2D.Impulse);
+        rigidbody2d.velocity = impuseDirection * impulseForce;
 
-        yield return new WaitForSeconds(stopTime);
+        float time = stopTime / 10f;
+        
+        for (int i = 0; i < 10; i++)
+        {
+            if(i % 2 == 0) spriteRenderer.color = new Color(0f, 0f, 0f, 0f);
+            else spriteRenderer.color = originalColor;
 
-        playerMovement.enabled = true;
-        playerAttack.enabled = true;
+            if(i == 5)
+            {
+                playerMovement.enabled = true;
+                playerAttack.enabled = true;
+            }
+
+            yield return new WaitForSeconds(time);
+        }
+
+        spriteRenderer.color = originalColor;
+
+        isImmortal = false;
 
     }
 

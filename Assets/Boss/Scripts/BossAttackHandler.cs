@@ -9,48 +9,24 @@ public class BossAttackHandler : MonoBehaviour
     [SerializeField]
     private float maxAttackDelay;
     [SerializeField]
-    private GameObject meleeAttackPrefab;
+    private int contactDamage;
 
-    private IBossAttack[] attacks;
-    private PlayerHealth playerHealth;
+    private IBossAttack[] allAttacks;
+    private List<IBossAttack> currentStageAttacks;
 
     void Awake()
     {
-        attacks = GetComponents<IBossAttack>();
+        allAttacks = GetComponents<IBossAttack>();
 
         StartCoroutine(AttackCycle());
-        StartCoroutine(MeleeAttackCycle());
     }
-
-    void Start()
+    
+    public void ChangeStage(int stage)
     {
-        playerHealth = GameObject.FindObjectOfType<PlayerHealth>();
-    }
-
-    void Update()
-    {
-        
-    }
-
-    IEnumerator MeleeAttackCycle()
-    {
-        while (true)
+        currentStageAttacks = new List<IBossAttack>();
+        foreach (var attack in allAttacks)
         {
-            yield return new WaitForSeconds(1f);
-            float distance = Vector3.Distance(transform.position, playerHealth.transform.position);
-
-            if(distance < 3f) 
-            {
-                Vector3 direction = Vector3.Normalize(playerHealth.transform.position - transform.position);
-                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-                Quaternion rotation = Quaternion.Euler(0f, 0f, angle - 90f);
-
-                Vector3 attackPosition = transform.position + (direction * 2.3f);
-
-                GameObject attackObject = Instantiate(meleeAttackPrefab, attackPosition, rotation);
-                attackObject.transform.SetParent(transform);
-            }
+            if(attack.Stage <= stage) currentStageAttacks.Add(attack);
         }
     }
 
@@ -59,10 +35,20 @@ public class BossAttackHandler : MonoBehaviour
         while (true)
         {
             float delay = Random.Range(minAttackDelay, maxAttackDelay);
-            yield return new WaitForSeconds(delay);
+            yield return new WaitForSeconds(1f);
 
-            IBossAttack attack = attacks[Random.Range(0, attacks.Length)];
+            IBossAttack attack = currentStageAttacks[Random.Range(0, currentStageAttacks.Count)];
             attack.Attack();
+            yield return new WaitUntil(() => attack.Finished);
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        PlayerHealth health = collision.gameObject.GetComponent<PlayerHealth>();
+        if(health)
+        {
+            health.DealDamage(contactDamage, transform);
         }
     }
 
