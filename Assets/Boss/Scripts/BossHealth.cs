@@ -67,7 +67,7 @@ public class BossHealth : MonoBehaviour, IHealth
         CurrentStage = stage;
 
         currentHealthPoints = stages[CurrentStage].Health;
-        originalColor = spriteRenderer.color;
+        originalColor = stages[CurrentStage].Color;
 
         if(changedStage) 
         {
@@ -75,7 +75,6 @@ public class BossHealth : MonoBehaviour, IHealth
         }
         else
         {
-            currentHealthPoints = stages[CurrentStage].Health;
             spriteRenderer.color = stages[CurrentStage].Color;
             spriteRenderer.sprite = stages[CurrentStage].Sprite;
         }

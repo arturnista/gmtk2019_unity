@@ -16,6 +16,10 @@ public class GameHUD : MonoBehaviour
     public delegate void Callback();
     Callback showCallback;
 
+    private float delay = 1f;
+    private float currentDelay;
+    private bool isLocked;
+
     void Awake()
     {
         spellContainer = transform.Find("SpellContainer");
@@ -29,10 +33,25 @@ public class GameHUD : MonoBehaviour
     {
         spellContainer.gameObject.SetActive(false);
         showCallback();
+        isLocked = false;
+    }
+
+    void Update()
+    {
+        if(isLocked)
+        {
+            currentDelay += Time.deltaTime;
+            if(currentDelay > delay && Input.anyKeyDown)
+            {
+                HandleContinue();
+            }
+        }
     }
 
     public void ShowSpell(IPlayerSkill playerSkill, Callback callback)
     {
+        isLocked = true;
+        currentDelay = 0f;
 
         showCallback = callback;
 
