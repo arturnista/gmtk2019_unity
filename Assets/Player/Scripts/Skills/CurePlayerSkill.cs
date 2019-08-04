@@ -31,11 +31,11 @@ public class CurePlayerSkill : MonoBehaviour, IPlayerSkill
     {
         if(!Enabled) return;
 
-        if(Input.GetMouseButtonDown(1))
+        if(Input.GetKeyDown(KeyCode.E))
         {
             StartCharging();
         }
-        else if(Input.GetMouseButtonUp(1))
+        else if(Input.GetKeyUp(KeyCode.E))
         {
             StopCharging();
         }

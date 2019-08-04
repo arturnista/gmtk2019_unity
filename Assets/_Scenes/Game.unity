@@ -355,6 +355,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 63430707623907502, guid: 9ce1b78d260e5f04b98b9f95236e9b62,
+        type: 3}
+      propertyPath: chargeTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2909698020418402808, guid: 9ce1b78d260e5f04b98b9f95236e9b62,
         type: 3}
       propertyPath: stage

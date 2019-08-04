@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class DashBossAttack : MonoBehaviour, IBossAttack
 {
-    public bool Finished { get { return rigidbody2D.velocity.sqrMagnitude <= 1f; } }
+    public bool Finished { get { return rigidbody2D.velocity.sqrMagnitude <= 0f; } }
 
     [SerializeField]
     private int stage;
     public int Stage { get { return stage; } }
     [SerializeField]
-    private int damage;
+    private GameObject telegraphPrefab;
 
     private bool isAttacking;
 
@@ -31,20 +31,22 @@ public class DashBossAttack : MonoBehaviour, IBossAttack
     public void Attack()
     {
 
-        Vector2 direction = playerHealth.transform.position - transform.position;
-        rigidbody2D.velocity = direction * 2f;
+        StartCoroutine(AttackCycle());
 
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    IEnumerator AttackCycle()
     {
         
-        if(isAttacking)
-        {
-            IHealth health = collider.GetComponent<IHealth>();
-            if(health != null) health.DealDamage(damage, transform);
-        }
-        
+        GameObject telegraphCreated = Instantiate(telegraphPrefab, transform.position + Vector3.up * 1.5f, Quaternion.identity);
+        telegraphCreated.transform.SetParent(transform);
+
+        yield return new WaitForSeconds(.5f);
+
+        Vector2 direction = playerHealth.transform.position - transform.position;
+        rigidbody2D.velocity = direction * 2f;
+
+        Destroy(telegraphCreated);
     }
 
 }

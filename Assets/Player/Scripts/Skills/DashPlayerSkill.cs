@@ -38,7 +38,7 @@ public class DashPlayerSkill : MonoBehaviour, IPlayerSkill
         if(!Enabled) return;
 
         cooldownPassed += Time.deltaTime;
-        if(Input.GetKeyDown(KeyCode.LeftShift) && cooldownPassed >= cooldown)  
+        if(Input.GetMouseButtonDown(1) && cooldownPassed >= cooldown)  
         {
             playerMovement.ExtraVelocity += playerMovement.MoveDirection * speed;
             isDashing = true;

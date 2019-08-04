@@ -99,8 +99,8 @@ GameObject:
   - component: {fileID: 4763109899402280414}
   - component: {fileID: 3802592057557949864}
   - component: {fileID: 6092418906510786452}
-  - component: {fileID: 2214645251725556735}
   - component: {fileID: 1822863645022554536}
+  - component: {fileID: 2214645251725556735}
   - component: {fileID: 8862319328018639586}
   m_Layer: 19
   m_Name: Boss
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e134c7c13bd7dd419cc05c46a6ecae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactDamage: 1
+  contactDamage: 2
 --- !u!114 &4763109899402280414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,23 +266,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stage: 1
-  damage: 1
---- !u!114 &2214645251725556735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3786819218847601992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9c1939cdbbf61b45a34b4c3e8c514b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stage: 1
-  swordPrefab: {fileID: 5253129032828781792, guid: 2313265dac651e94ca061169ce240534,
+  telegraphPrefab: {fileID: 631819284051780013, guid: c36032398970bba42974c55dbbddcd7f,
     type: 3}
-  amount: 14
 --- !u!114 &1822863645022554536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,9 +281,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stage: 1
-  spikePrefab: {fileID: 0}
+  spikePrefab: {fileID: 584251069637518218, guid: 447825de834cc1e40836f109dbd6af8c,
+    type: 3}
   amount: 3
-  mapSize: {x: 0, y: 0}
+  mapSize: {x: 16, y: 16}
+--- !u!114 &2214645251725556735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3786819218847601992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9c1939cdbbf61b45a34b4c3e8c514b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stage: 2
+  swordPrefab: {fileID: 5253129032828781792, guid: 2313265dac651e94ca061169ce240534,
+    type: 3}
+  amount: 14
 --- !u!114 &8862319328018639586
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,12 +10,15 @@ public class BossAttackHandler : MonoBehaviour
     private IBossAttack[] allAttacks;
     private List<IBossAttack> currentStageAttacks;
 
+    private PlayerHealth playerHealth;
+
     private Vector3 targetPosition;
     private bool isMoving;
 
     void Awake()
     {
         allAttacks = GetComponents<IBossAttack>();
+        playerHealth = GameObject.FindObjectOfType<PlayerHealth>();
 
         StartCoroutine(AttackCycle());
     }
@@ -42,13 +45,14 @@ public class BossAttackHandler : MonoBehaviour
         while (true)
         {
             isMoving = true;
-            targetPosition = transform.position + (Vector3)(Random.insideUnitCircle * 3f);
+            targetPosition = playerHealth.transform.position + (Vector3)(Random.insideUnitCircle * 3f);
             yield return new WaitForSeconds(1f);
             isMoving = false;
 
             IBossAttack attack = currentStageAttacks[Random.Range(0, currentStageAttacks.Count)];
             attack.Attack();
             yield return new WaitUntil(() => attack.Finished);
+            yield return new WaitForSeconds(.5f);
         }
     }
 
