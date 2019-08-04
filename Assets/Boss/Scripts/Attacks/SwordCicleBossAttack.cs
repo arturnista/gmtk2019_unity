@@ -14,17 +14,23 @@ public class SwordCicleBossAttack : MonoBehaviour, IBossAttack
     private GameObject swordPrefab;
     [SerializeField]
     private int amount = 5;
+    [SerializeField]
+    private AudioClip audioClip;
+    private AudioSource audioSource;
 
     private PlayerHealth playerHealth;
 
     void Start()
     {
         playerHealth = GameObject.FindObjectOfType<PlayerHealth>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void Attack()
     {
 
+        audioSource.PlayOneShot(audioClip, 1f);
+        
         Finished = false;
 
         float angleBase = 360f / amount;

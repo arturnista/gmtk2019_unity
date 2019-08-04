@@ -12,6 +12,9 @@ public class PlayerHealth : MonoBehaviour, IHealth
     private float stopTime;
     [SerializeField]
     private float impulseForce;
+    [SerializeField]
+    private AudioClip damageClip;
+    private AudioSource audioSource;
     private int currentHealthPoints;
     Rigidbody2D rigidbody2d;
     PlayerMovement playerMovement;
@@ -30,6 +33,8 @@ public class PlayerHealth : MonoBehaviour, IHealth
     {
 
         TotalHeal();
+
+        audioSource = GetComponent<AudioSource>();
 
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         originalColor = spriteRenderer.color;
@@ -70,6 +75,8 @@ public class PlayerHealth : MonoBehaviour, IHealth
 
         currentHealthPoints -= damage;
         StartCoroutine(FreezeMovementAndAttack(damager.position));
+
+        audioSource.PlayOneShot(damageClip, .6f);
 
         Debug.Log("VIDA DO PREIER: " + currentHealthPoints);
 

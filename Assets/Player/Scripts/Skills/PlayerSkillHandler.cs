@@ -7,6 +7,20 @@ public class PlayerSkillHandler : MonoBehaviour
     
     private IPlayerSkill[] skills;
 
+    public List<IPlayerSkill> AvailableSkills
+    {
+        get
+        {
+            List<IPlayerSkill> ret = new List<IPlayerSkill>();
+            foreach (var skill in skills)
+            {
+                if(skill.Enabled) ret.Add(skill);
+            }
+            
+            return ret;
+        }
+    }
+
     void Awake()
     {
         skills = GetComponents<IPlayerSkill>();

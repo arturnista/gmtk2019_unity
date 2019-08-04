@@ -11,6 +11,9 @@ public class DashBossAttack : MonoBehaviour, IBossAttack
     public int Stage { get { return stage; } }
     [SerializeField]
     private GameObject telegraphPrefab;
+    [SerializeField]
+    private AudioClip audioClip;
+    private AudioSource audioSource;
 
     private bool isAttacking;
 
@@ -20,6 +23,7 @@ public class DashBossAttack : MonoBehaviour, IBossAttack
     void Start()
     {
         playerHealth = GameObject.FindObjectOfType<PlayerHealth>();
+        audioSource = GetComponent<AudioSource>();
         rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
@@ -31,6 +35,7 @@ public class DashBossAttack : MonoBehaviour, IBossAttack
     public void Attack()
     {
 
+        audioSource.PlayOneShot(audioClip, 1f);
         StartCoroutine(AttackCycle());
 
     }

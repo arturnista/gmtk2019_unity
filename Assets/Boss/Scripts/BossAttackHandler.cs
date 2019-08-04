@@ -6,6 +6,9 @@ public class BossAttackHandler : MonoBehaviour
 {
     [SerializeField]
     private int contactDamage;
+    [SerializeField]
+    private AudioClip[] movementAudios;
+    private AudioSource audioSource;
 
     private IBossAttack[] allAttacks;
     private List<IBossAttack> currentStageAttacks;
@@ -21,6 +24,7 @@ public class BossAttackHandler : MonoBehaviour
     {
         allAttacks = GetComponents<IBossAttack>();
         playerHealth = GameObject.FindObjectOfType<PlayerHealth>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void OnEnable()
@@ -55,6 +59,12 @@ public class BossAttackHandler : MonoBehaviour
     {
         while (true)
         {
+            if(movementAudios.Length > 0)
+            {
+                audioSource.clip = movementAudios[Random.Range(0, movementAudios.Length - 1)];
+                audioSource.Play();
+            }
+            
             isMoving = true;
             targetPosition = playerHealth.transform.position + (Vector3)(Random.insideUnitCircle * 3f);
             yield return new WaitForSeconds(1f);

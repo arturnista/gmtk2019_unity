@@ -32,6 +32,9 @@ public class DashPlayerSkill : MonoBehaviour, IPlayerSkill
 
     [SerializeField]
     private GameObject ghostPrefab;
+    [SerializeField]
+    private AudioClip audioClip;
+    private AudioSource audioSource;
 
     private PlayerMovement playerMovement;
     private PlayerHealth playerHealth;
@@ -41,6 +44,7 @@ public class DashPlayerSkill : MonoBehaviour, IPlayerSkill
 
     void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         playerMovement = GetComponent<PlayerMovement>();
         playerHealth = GetComponent<PlayerHealth>();
         cooldownPassed = cooldown;
@@ -53,6 +57,7 @@ public class DashPlayerSkill : MonoBehaviour, IPlayerSkill
         cooldownPassed += Time.deltaTime;
         if(Input.GetKeyDown(KeyCode.Space) && cooldownPassed >= cooldown)  
         {
+            audioSource.PlayOneShot(audioClip, 1f);
             playerMovement.ExtraVelocity += playerMovement.MoveDirection * speed;
             isDashing = true;
             playerHealth.IsImmortal = true;

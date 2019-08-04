@@ -7,8 +7,10 @@ public class PlayerAttack : MonoBehaviour
     
     [SerializeField]
     private GameObject projectilePrefab;
+    public GameObject ProjectilePrefab { get { return projectilePrefab; } set { projectilePrefab = value;} }
     [SerializeField]
     private float cooldown = 0.5f;
+    public float Cooldown { get { return cooldown; } set { cooldown = value;} }
     
     private Coroutine fireCoroutine;
     

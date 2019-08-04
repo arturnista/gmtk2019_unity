@@ -19,6 +19,23 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private Vector2 bossSpawnPosition;
 
+    [SerializeField]
+    private GameObject skillIndicatorPrefab;
+    [SerializeField]
+    private Vector2 skillIndicatorPosition;
+    private List<GameObject> indicators;
+
+    private AudioSource audioSource;
+    [Header("Audio")]
+    [SerializeField]
+    private AudioClip gameMusic;
+    [SerializeField]
+    private AudioClip lobbyMusic;
+    [SerializeField]
+    private AudioClip startGameClip;
+    [SerializeField]
+    private AudioClip changeStageClip;
+
     private BossHealth bossHealth;
     private BossAttackHandler bossAttackHandler;
 
@@ -35,7 +52,11 @@ public class GameController : MonoBehaviour
 
     void Awake()
     {
-        if(main == null) main = this;        
+        if(main == null) main = this;      
+
+        audioSource = GetComponent<AudioSource>();  
+
+        indicators = new List<GameObject>();
 
         gameHUD = GameObject.FindObjectOfType<GameHUD>();
         cameraFollower = GameObject.FindObjectOfType<CameraFollower>();
@@ -50,6 +71,9 @@ public class GameController : MonoBehaviour
     void Start()
     {
         playerAttack.transform.position = respawnPosition;
+
+        audioSource.clip = lobbyMusic;
+        audioSource.Play();
     }
 
     public void OnPlayerDeath()
@@ -62,12 +86,37 @@ public class GameController : MonoBehaviour
 
         mapBlock.SetActive(false);
         
-        playerAttack.transform.position = respawnPosition;        
+        playerAttack.transform.position = respawnPosition;    
+
+        foreach (var ind in indicators)
+        {
+            Destroy(ind);
+        }    
+
+        Vector3 indicatorPosition = skillIndicatorPosition;
+        bool right = true;
+        foreach (var skill in playerSkillHandler.AvailableSkills)
+        {
+            GameObject skillCreated = Instantiate(skillIndicatorPrefab, indicatorPosition, Quaternion.identity);
+            skillCreated.GetComponent<SkillIndicator>().Construct(skill);
+
+            if(right) indicatorPosition.x += 4f;
+            else 
+            {
+                indicatorPosition.x -= 4f;
+                indicatorPosition.y -= 2f;
+            }
+
+            right = !right;
+        }
 
         foreach (var spike in GameObject.FindGameObjectsWithTag("Spike"))
         {
             Destroy(spike);
         }
+
+        audioSource.clip = lobbyMusic;
+        audioSource.Play();
     }
 
     public void OnStartGame()
@@ -88,10 +137,21 @@ public class GameController : MonoBehaviour
 
         CurrentStage = -1;
         NextStage();
+
+        audioSource.Stop();
+        audioSource.PlayOneShot(startGameClip);
+        Invoke("StartGameMusic", 1f);
+    }
+
+    void StartGameMusic()
+    {
+        audioSource.clip = gameMusic;
+        audioSource.Play();
     }
     
     public void NextStage()
     {
+        if(CurrentStage >= 0) audioSource.PlayOneShot(changeStageClip, .5f);
         StartCoroutine(NextStageCycle());
     }
 
@@ -137,6 +197,10 @@ public class GameController : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(bossSpawnPosition, 1f);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(skillIndicatorPosition, .5f);
+        // Gizmos.DrawWireCube(skillIndicatorPosition, Vector3.zero);
     }
 
 }

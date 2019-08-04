@@ -27,17 +27,25 @@ public class CurePlayerSkill : MonoBehaviour, IPlayerSkill
     [SerializeField]
     private float chargeTime;
     private float currentChargeTime;
+    [SerializeField]
+    private AudioClip audioClip;
+    private AudioSource audioSource;
 
     private bool isCharging;
 
     private PlayerHealth playerHealth;
     private PlayerMovement playerMovement;
 
+    private ParticleSystem system;
+
     
     void Awake()
     {
         playerHealth = GetComponent<PlayerHealth>();
         playerMovement = GetComponent<PlayerMovement>();
+        audioSource = GetComponent<AudioSource>();
+
+        system = transform.Find("HealParticles").GetComponent<ParticleSystem>();
     }
 
     void Update()
@@ -69,16 +77,22 @@ public class CurePlayerSkill : MonoBehaviour, IPlayerSkill
         
         playerMovement.enabled = false;
         currentChargeTime = 0f;
+        
+        system.Play();
     }
 
     void StopCharging()
     {
         isCharging = false;
         playerMovement.enabled = true;
+        
+        system.Stop();
     }
 
     void CurePlayer()
     {
+        audioSource.PlayOneShot(audioClip, 1f);
+        
         playerHealth.AddHealth(2);
         StopCharging();
     }

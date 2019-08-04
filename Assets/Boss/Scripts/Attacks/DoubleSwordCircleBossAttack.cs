@@ -14,6 +14,9 @@ public class DoubleSwordCircleBossAttack : MonoBehaviour, IBossAttack
     private GameObject swordPrefab;
     [SerializeField]
     private int amount = 10;
+    [SerializeField]
+    private AudioClip audioClip;
+    private AudioSource audioSource;
 
     private float initialAngle;
 
@@ -22,6 +25,7 @@ public class DoubleSwordCircleBossAttack : MonoBehaviour, IBossAttack
     void Start()
     {
         playerHealth = GameObject.FindObjectOfType<PlayerHealth>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void Attack()
@@ -48,6 +52,9 @@ public class DoubleSwordCircleBossAttack : MonoBehaviour, IBossAttack
 
     void Wave(float initialAngle)
     {
+
+        audioSource.PlayOneShot(audioClip, 1f);
+
         int waveAmount = amount / 2;
 
         float angleBase = 360f / waveAmount;
