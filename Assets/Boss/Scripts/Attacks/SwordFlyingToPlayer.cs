@@ -15,11 +15,15 @@ public class SwordFlyingToPlayer : MonoBehaviour, IBossAttack
     private Vector2 playerPosition;
     private Vector2 direction;
     private Vector2[] spawnPositions;
+    [SerializeField]
+    private AudioClip audioClip;
+    private AudioSource audioSource;
 
 
     void Start()
     {
         playerHealth = GameObject.FindObjectOfType<PlayerHealth>();
+        audioSource = GetComponent<AudioSource>();
 
         spawnPositions = new Vector2[] 
         {
@@ -39,8 +43,13 @@ public class SwordFlyingToPlayer : MonoBehaviour, IBossAttack
 
     public void Attack() 
     {
+        StartCoroutine(AttackCycle());
+    }
 
-    Finished = false;
+    IEnumerator AttackCycle()
+    {
+        
+        Finished = false;
 
         foreach (var spawnPosition in spawnPositions)
         {
@@ -55,10 +64,13 @@ public class SwordFlyingToPlayer : MonoBehaviour, IBossAttack
 
             GameObject swordCreated = Instantiate(swordPrefab, spawnPosition, rotation);
 
+            audioSource.PlayOneShot(audioClip);
+
+            yield return new WaitForSeconds(.4f);
+
         }
 
-    Invoke("FinishAttack", 1.3f);
-
+        Invoke("FinishAttack", 1.3f);
     }
 
     void FinishAttack()

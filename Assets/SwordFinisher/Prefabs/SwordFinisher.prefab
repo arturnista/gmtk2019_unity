@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 8754915992335895100}
   m_Layer: 0
   m_Name: SwordFinisher
-  m_TagString: Untagged
+  m_TagString: Spike
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -283,15 +283,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 4
-  spriteFive: {fileID: -4567800658838358310, guid: 70a1aa3a3fc80214585f4c0ab9aea46d,
+  spriteFive: {fileID: -4465220619339274846, guid: 70a1aa3a3fc80214585f4c0ab9aea46d,
     type: 3}
-  spriteFour: {fileID: -6495438254865826154, guid: 70a1aa3a3fc80214585f4c0ab9aea46d,
+  spriteFour: {fileID: -4171227572575771427, guid: 70a1aa3a3fc80214585f4c0ab9aea46d,
     type: 3}
-  spriteThree: {fileID: -6852522260524192793, guid: 70a1aa3a3fc80214585f4c0ab9aea46d,
+  spriteThree: {fileID: -655434098509047158, guid: 70a1aa3a3fc80214585f4c0ab9aea46d,
     type: 3}
-  spriteTwo: {fileID: 3311643308723019210, guid: 70a1aa3a3fc80214585f4c0ab9aea46d,
+  spriteTwo: {fileID: -1745854958102221136, guid: 70a1aa3a3fc80214585f4c0ab9aea46d,
     type: 3}
-  spriteOne: {fileID: -3681042183987401923, guid: 70a1aa3a3fc80214585f4c0ab9aea46d,
+  spriteOne: {fileID: -5488585057290169300, guid: 70a1aa3a3fc80214585f4c0ab9aea46d,
     type: 3}
   spriteDeath: {fileID: -6684319384054047079, guid: 70a1aa3a3fc80214585f4c0ab9aea46d,
     type: 3}

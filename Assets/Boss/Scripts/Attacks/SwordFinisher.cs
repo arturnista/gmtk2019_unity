@@ -13,10 +13,14 @@ public class SwordFinisher : MonoBehaviour, IBossAttack
     private GameObject swordFinisherPrefab;
     private PlayerHealth playerHealth;
     private Vector2[] spawnPositions;
+    [SerializeField]
+    private AudioClip audioClip;
+    private AudioSource audioSource;
 
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         playerHealth = GameObject.FindObjectOfType<PlayerHealth>();
 
         spawnPositions = new Vector2[] 
@@ -37,8 +41,8 @@ public class SwordFinisher : MonoBehaviour, IBossAttack
 
     public void Attack() 
     {
-
-    Finished = false;
+        audioSource.PlayOneShot(audioClip, .8f);
+        Finished = false;
 
         foreach (var spawnPosition in spawnPositions)
         {
@@ -47,7 +51,7 @@ public class SwordFinisher : MonoBehaviour, IBossAttack
 
         }
 
-    Invoke("FinishAttack", 3f);
+        Invoke("FinishAttack", 3f);
 
     }
 

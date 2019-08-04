@@ -439,6 +439,7 @@ MonoBehaviour:
   stage: 2
   swordPrefab: {fileID: 5253129032828781792, guid: 2313265dac651e94ca061169ce240534,
     type: 3}
+  audioClip: {fileID: 8300000, guid: 1a3a24650337f024c9b5bbbae340c6cc, type: 3}
 --- !u!114 &-7333663833694828213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -451,6 +452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d88f208e1294d54bae429574136c0b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stage: 4
+  stage: 0
   swordFinisherPrefab: {fileID: 9091651298028760810, guid: ed0f312bf3ca0e54f9df74eb0f71c547,
     type: 3}
+  audioClip: {fileID: 8300000, guid: 4142d881b9873f245925e03f133c8d47, type: 3}

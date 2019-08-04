@@ -63,7 +63,7 @@ public class PlayerHealth : MonoBehaviour, IHealth
         {
             bool isImmortalBefore = IsImmortal;       
             IsImmortal = false;
-            DealDamage(damage, damager);
+            DealDamage(damage, null);
 
             IsImmortal = isImmortalBefore;
         }
@@ -74,7 +74,7 @@ public class PlayerHealth : MonoBehaviour, IHealth
         if(IsImmortal) return;
 
         currentHealthPoints -= damage;
-        StartCoroutine(FreezeMovementAndAttack(damager.position));
+        StartCoroutine(FreezeMovementAndAttack(damager ? damager.position : Vector3.zero));
 
         audioSource.PlayOneShot(damageClip, .6f);
 
@@ -99,12 +99,15 @@ public class PlayerHealth : MonoBehaviour, IHealth
     IEnumerator FreezeMovementAndAttack(Vector3 enemyPosition)
     {
         IsImmortal = true;
-
+        
         playerPosition = transform.position;
-        Vector3 impuseDirection = playerPosition - enemyPosition;
         playerMovement.enabled = false;
         playerAttack.enabled = false;
-        rigidbody2d.velocity = impuseDirection * impulseForce;
+        if(enemyPosition == Vector3.zero)
+        {
+            Vector3 impuseDirection = playerPosition - enemyPosition;
+            rigidbody2d.velocity = impuseDirection * impulseForce;
+        }
 
         float time = stopTime / 10f;
         
