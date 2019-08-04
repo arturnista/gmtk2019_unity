@@ -10,10 +10,8 @@ public class SwordFinisher : MonoBehaviour, IBossAttack
     private int stage;
     public int Stage { get { return stage; } }
     [SerializeField]
-    private GameObject swordPrefab;
+    private GameObject swordFinisherPrefab;
     private PlayerHealth playerHealth;
-    private Vector2 playerPosition;
-    private Vector2 direction;
     private Vector2[] spawnPositions;
 
 
@@ -23,10 +21,10 @@ public class SwordFinisher : MonoBehaviour, IBossAttack
 
         spawnPositions = new Vector2[] 
         {
-            new Vector2(4f, 4f),
-            new Vector2(-4f, 4f),
-            new Vector2(4f, -4f),
-            new Vector2(-4f, -4f)
+            new Vector2(5f, 5f),
+            new Vector2(-5f, 5f),
+            new Vector2(5f, -5f),
+            new Vector2(-5f, -5f)
         };
 
     }
@@ -44,20 +42,12 @@ public class SwordFinisher : MonoBehaviour, IBossAttack
 
         foreach (var spawnPosition in spawnPositions)
         {
-            playerPosition = playerHealth.transform.position;
 
-            direction = playerPosition - spawnPosition;
-            direction.Normalize();
-
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        
-            Quaternion rotation = Quaternion.Euler(0f, 0f, angle);
-
-            GameObject swordCreated = Instantiate(swordPrefab, spawnPosition, rotation);
+            GameObject swordCreated = Instantiate(swordFinisherPrefab, spawnPosition, Quaternion.identity);
 
         }
 
-    Invoke("FinishAttack", 1.3f);
+    Invoke("FinishAttack", 4.5f);
 
     }
 
