@@ -43,3 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa2ff390c10aab946976f95f122bd470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossPrefab: {fileID: 3786819218847601992, guid: 2dfaeb3812bbcc34ab9968630174c2ee,
+    type: 3}
+  respawnPosition: {x: 0.5, y: -21}
+  mapBlock: {fileID: 0}

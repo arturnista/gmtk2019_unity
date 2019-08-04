@@ -29,7 +29,7 @@ public class PlayerHealth : MonoBehaviour, IHealth
     void Awake()
     {
 
-        currentHealthPoints = totalHealthPoints;
+        TotalHeal();
 
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         originalColor = spriteRenderer.color;
@@ -45,6 +45,11 @@ public class PlayerHealth : MonoBehaviour, IHealth
     void Update()
     {
 
+    }
+
+    public void TotalHeal()
+    {
+        currentHealthPoints = totalHealthPoints;        
     }
 
     public void DealDamage(int damage, Transform damager, bool force)
@@ -71,7 +76,7 @@ public class PlayerHealth : MonoBehaviour, IHealth
         if (currentHealthPoints <= 0) 
         {
 
-            Destroy(this.gameObject);
+            GameController.main.OnPlayerDeath();
 
         }
 

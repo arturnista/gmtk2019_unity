@@ -22,7 +22,7 @@ public class PlayerSkillHandler : MonoBehaviour
     {
         foreach (var skill in skills)
         {
-            if(skill.Stage == stage)
+            if(skill.Stage == stage && !skill.Enabled)
             {
                 skill.Enabled = true;
                 return skill;

@@ -52,8 +52,6 @@ public class HUDHealthContainer : MonoBehaviour
             {
                 int heartResp = (i + 1) * 2;
                 
-                Debug.Log(playerHealth.CurrentHealthPoints + " :: " + heartResp);
-
                 if(heartResp <= playerHealth.CurrentHealthPoints)
                 {
                     hearts[i].sprite = fullHeart;    
