@@ -11,10 +11,15 @@ public class PlayerAttack : MonoBehaviour
     private float cooldown = 0.5f;
     
     private Coroutine fireCoroutine;
-
+    
     void Awake()
     {
         
+    }
+
+    void OnDisable()
+    {
+        StopFiring();
     }
 
     void Update()
@@ -26,10 +31,18 @@ public class PlayerAttack : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0)) 
         {
+            StopFiring();
+        }
+
+    }
+
+    void StopFiring()
+    {
+        if(fireCoroutine != null)
+        {
             StopCoroutine(fireCoroutine);
             fireCoroutine = null;
         }
-
     }
 
     IEnumerator FireCycle()

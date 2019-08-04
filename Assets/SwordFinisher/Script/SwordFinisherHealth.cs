@@ -44,7 +44,7 @@ public class SwordFinisherHealth : MonoBehaviour, IHealth
 
         yield return new WaitForSeconds(5);
 
-        playerHealth.DealDamage(damage, transform);
+        playerHealth.DealDamage(damage, transform, true);
 
         Destroy(gameObject);
 

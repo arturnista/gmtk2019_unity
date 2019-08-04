@@ -47,6 +47,18 @@ public class PlayerHealth : MonoBehaviour, IHealth
 
     }
 
+    public void DealDamage(int damage, Transform damager, bool force)
+    {
+        if(force)
+        {
+            bool isImmortalBefore = IsImmortal;       
+            IsImmortal = false;
+            DealDamage(damage, damager);
+
+            IsImmortal = isImmortalBefore;
+        }
+    }
+
     public void DealDamage(int damage, Transform damager)
     {
         if(IsImmortal) return;
