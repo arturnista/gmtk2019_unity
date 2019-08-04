@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -6002157571523280566, guid: 70a1aa3a3fc80214585f4c0ab9aea46d,
     type: 3}
-  m_Color: {r: 1, g: 0, b: 0.25638866, a: 1}
+  m_Color: {r: 1, g: 0.58835566, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 2214645251725556735}
   - component: {fileID: 8862319328018639586}
   - component: {fileID: -8695304322437178578}
+  - component: {fileID: 7146834368189681947}
   - component: {fileID: -7333663833694828213}
   m_Layer: 19
   m_Name: Boss
@@ -276,7 +277,7 @@ MonoBehaviour:
   - Health: 25
     Sprite: {fileID: -6002157571523280566, guid: 70a1aa3a3fc80214585f4c0ab9aea46d,
       type: 3}
-    Color: {r: 1, g: 0, b: 0.25638866, a: 1}
+    Color: {r: 1, g: 0.58835566, b: 0, a: 1}
   - Health: 50
     Sprite: {fileID: -782693673867131832, guid: 70a1aa3a3fc80214585f4c0ab9aea46d,
       type: 3}
@@ -293,6 +294,11 @@ MonoBehaviour:
     Sprite: {fileID: 7012289439761142941, guid: 70a1aa3a3fc80214585f4c0ab9aea46d,
       type: 3}
     Color: {r: 1, g: 0.8, b: 0, a: 1}
+  - Health: 300
+    Sprite: {fileID: -2163810474871045779, guid: 70a1aa3a3fc80214585f4c0ab9aea46d,
+      type: 3}
+    Color: {r: 1, g: 0.08483086, b: 0, a: 1}
+  deathClip: {fileID: 8300000, guid: 1c8e9702722fe7b48b277e8423a5fb75, type: 3}
 --- !u!114 &1399984201164476209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,7 +445,27 @@ MonoBehaviour:
   stage: 2
   swordPrefab: {fileID: 5253129032828781792, guid: 2313265dac651e94ca061169ce240534,
     type: 3}
+  indicatorPrefab: {fileID: 4303085769134570232, guid: 8ceb8f6a33913284d8037fc278956c28,
+    type: 3}
+  delay: 0.3
   audioClip: {fileID: 8300000, guid: 1a3a24650337f024c9b5bbbae340c6cc, type: 3}
+--- !u!114 &7146834368189681947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3786819218847601992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39bb3bd0568cfd04bb5aa8bf9a15eddb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stage: 3
+  spikePrefab: {fileID: 8837713277590417639, guid: 1679e6d3852c6124c8e399ed4e8b751a,
+    type: 3}
+  amount: 2
+  mapSize: {x: 14, y: 14}
 --- !u!114 &-7333663833694828213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,7 +478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d88f208e1294d54bae429574136c0b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stage: 0
+  stage: 4
   swordFinisherPrefab: {fileID: 9091651298028760810, guid: ed0f312bf3ca0e54f9df74eb0f71c547,
     type: 3}
   audioClip: {fileID: 8300000, guid: 4142d881b9873f245925e03f133c8d47, type: 3}

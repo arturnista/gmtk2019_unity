@@ -16,6 +16,9 @@ public class BossHealth : MonoBehaviour, IHealth
     [SerializeField]
     private List<BossStage> stages;
     public int CurrentStage { get; private set; }
+    [SerializeField]
+    private AudioClip deathClip;
+    private AudioSource audioSource;
 
     private SpriteRenderer spriteRenderer;
 
@@ -30,10 +33,12 @@ public class BossHealth : MonoBehaviour, IHealth
     private Color originalColor;
 
     private bool isImmortal;
+    private bool isDead;
 
     void Awake()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -50,7 +55,7 @@ public class BossHealth : MonoBehaviour, IHealth
         if (currentHealthPoints <= 0) 
         {
             currentHealthPoints = 1000;
-            gameController.NextStage();
+            gameController.NextStage(CurrentStage == stages.Count - 1);
         }
         else
         {
@@ -129,5 +134,26 @@ public class BossHealth : MonoBehaviour, IHealth
         spriteRenderer.color = originalColor;
         displayCycleCoroutine = null;
 
+    }
+
+    public void Kill()
+    {
+        isDead = true;
+        audioSource.PlayOneShot(deathClip);
+        StartCoroutine(KillCycle());
+    }
+
+    IEnumerator KillCycle()
+    {
+        Sprite sprite = spriteRenderer.sprite;
+
+        int i = 0;
+        for (;; i++)
+        {
+            if(i % 2 == 0) spriteRenderer.sprite = null;
+            else spriteRenderer.sprite = sprite;
+
+            yield return new WaitForSeconds(.2f);
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -80,9 +81,9 @@ public class GameController : MonoBehaviour
     {
         gameStarted = false;
 
-        cameraFollower.enabled = true;
+        cameraFollower.FinishGame();
 
-        Destroy(bossHealth.gameObject);
+        if(bossHealth) Destroy(bossHealth.gameObject);
 
         mapBlock.SetActive(false);
         
@@ -124,7 +125,7 @@ public class GameController : MonoBehaviour
         if(gameStarted) return;
         gameStarted = true;
 
-        cameraFollower.enabled = false;
+        cameraFollower.StartGame();
 
         playerHealth.TotalHeal();
 
@@ -136,7 +137,7 @@ public class GameController : MonoBehaviour
         mapBlock.SetActive(true); 
 
         CurrentStage = -1;
-        NextStage();
+        NextStage(false);
 
         audioSource.Stop();
         audioSource.PlayOneShot(startGameClip);
@@ -148,11 +149,47 @@ public class GameController : MonoBehaviour
         audioSource.clip = gameMusic;
         audioSource.Play();
     }
-    
-    public void NextStage()
+
+    void Update()
     {
-        if(CurrentStage >= 0) audioSource.PlayOneShot(changeStageClip, .5f);
-        StartCoroutine(NextStageCycle());
+        if(Input.GetKeyDown(KeyCode.F2))
+        {
+            OnPlayerDeath();
+        }
+    }
+    
+    public void NextStage(bool finalStage)
+    {
+        if(!finalStage)
+        {
+            if(CurrentStage >= 0) audioSource.PlayOneShot(changeStageClip, .5f);
+            StartCoroutine(NextStageCycle());
+        }
+        else
+        {
+
+            foreach (var spike in GameObject.FindGameObjectsWithTag("Spike"))
+            {
+                Destroy(spike);
+            }
+
+            bossAttackHandler.enabled = false;
+            playerSkillHandler.enabled = false;
+
+            bossHealth.Kill();
+            Invoke("FadeOut", 3f);
+            Invoke("WinScreen", 4f);
+        }
+    }
+
+    void FadeOut()
+    {
+        gameHUD.FadeOut();
+    }
+
+    void WinScreen()
+    {
+        SceneManager.LoadScene("WinScreen");
     }
 
     IEnumerator NextStageCycle()

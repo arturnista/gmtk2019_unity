@@ -12,6 +12,7 @@ public class GameHUD : MonoBehaviour
 
     private Transform dashSpellContainer;
     private Button continueDash;
+    private Image fadeoutImage;
 
     public delegate void Callback();
     Callback showCallback;
@@ -27,6 +28,8 @@ public class GameHUD : MonoBehaviour
 
         continueSpell = spellContainer.GetComponentInChildren<Button>();
         continueSpell.onClick.AddListener(HandleContinue);
+
+        fadeoutImage = transform.Find("FadeoutImage").GetComponent<Image>();
     }
 
     void HandleContinue()
@@ -65,6 +68,23 @@ public class GameHUD : MonoBehaviour
 
         spellContainer.gameObject.SetActive(true);
 
+    }
+
+    public void FadeOut()
+    {
+        StartCoroutine(FadeOutCycle());
+    }
+
+    IEnumerator FadeOutCycle()
+    {
+        Color color = new Color(0f, 0f, 0f, 0f);
+        while (true)
+        {
+            color.a += Time.deltaTime;
+            fadeoutImage.color = color;
+
+            yield return null;
+        }
     }
     
 }

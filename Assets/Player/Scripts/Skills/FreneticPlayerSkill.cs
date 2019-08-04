@@ -40,6 +40,7 @@ public class FreneticPlayerSkill : MonoBehaviour, IPlayerSkill
     void Awake()
     {
         playerAttack = GetComponent<PlayerAttack>();
+        cooldownPassed = cooldown;
     }
 
     void Update()

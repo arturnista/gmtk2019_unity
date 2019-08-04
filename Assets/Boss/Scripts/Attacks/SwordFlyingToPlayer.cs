@@ -11,6 +11,10 @@ public class SwordFlyingToPlayer : MonoBehaviour, IBossAttack
     public int Stage { get { return stage; } }
     [SerializeField]
     private GameObject swordPrefab;
+    [SerializeField]
+    private GameObject indicatorPrefab;
+    [SerializeField]
+    private float delay = 1f;
     private PlayerHealth playerHealth;
     private Vector2 playerPosition;
     private Vector2 direction;
@@ -48,6 +52,13 @@ public class SwordFlyingToPlayer : MonoBehaviour, IBossAttack
 
     IEnumerator AttackCycle()
     {
+
+        foreach (var spawnPosition in spawnPositions)
+        {
+            Instantiate(indicatorPrefab, spawnPosition, Quaternion.identity);
+        }
+        
+        yield return new WaitForSeconds(delay);
         
         Finished = false;
 
