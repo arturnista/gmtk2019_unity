@@ -70,9 +70,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7012289439761142941, guid: 70a1aa3a3fc80214585f4c0ab9aea46d,
+  m_Sprite: {fileID: -6002157571523280566, guid: 70a1aa3a3fc80214585f4c0ab9aea46d,
     type: 3}
-  m_Color: {r: 1, g: 0.9395391, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.25638866, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 6092418906510786452}
   - component: {fileID: 2214645251725556735}
   - component: {fileID: 1822863645022554536}
+  - component: {fileID: 8862319328018639586}
   m_Layer: 19
   m_Name: Boss
   m_TagString: Untagged
@@ -176,16 +177,17 @@ MonoBehaviour:
   - Health: 25
     Sprite: {fileID: -6002157571523280566, guid: 70a1aa3a3fc80214585f4c0ab9aea46d,
       type: 3}
-    Color: {r: 1, g: 1, b: 1, a: 1}
+    Color: {r: 1, g: 0, b: 0.25638866, a: 1}
   - Health: 50
-    Sprite: {fileID: 450357103052299746, guid: 70a1aa3a3fc80214585f4c0ab9aea46d, type: 3}
-    Color: {r: 0, g: 0.77698135, b: 1, a: 1}
-  - Health: 150
     Sprite: {fileID: -782693673867131832, guid: 70a1aa3a3fc80214585f4c0ab9aea46d,
       type: 3}
-    Color: {r: 0.4433962, g: 0, b: 0.37310642, a: 1}
-  - Health: 250
+    Color: {r: 0, g: 0.77698135, b: 1, a: 1}
+  - Health: 150
     Sprite: {fileID: -7017652878900891732, guid: 70a1aa3a3fc80214585f4c0ab9aea46d,
+      type: 3}
+    Color: {r: 0.8867924, g: 0.004182993, b: 0.7461996, a: 1}
+  - Health: 250
+    Sprite: {fileID: 9185668013354558551, guid: 70a1aa3a3fc80214585f4c0ab9aea46d,
       type: 3}
     Color: {r: 0.04454082, g: 0.6698113, b: 0, a: 1}
   - Health: 500
@@ -218,8 +220,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e134c7c13bd7dd419cc05c46a6ecae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minAttackDelay: 1
-  maxAttackDelay: 5
   contactDamage: 1
 --- !u!114 &4763109899402280414
 MonoBehaviour:
@@ -299,3 +299,19 @@ MonoBehaviour:
   spikePrefab: {fileID: 0}
   amount: 3
   mapSize: {x: 0, y: 0}
+--- !u!114 &8862319328018639586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3786819218847601992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aa4bf87d7607d74b8e17823ff30a24e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stage: 2
+  swordPrefab: {fileID: 5253129032828781792, guid: dea0d4670e472c54494506fb2f8b7c73,
+    type: 3}
+  amount: 1

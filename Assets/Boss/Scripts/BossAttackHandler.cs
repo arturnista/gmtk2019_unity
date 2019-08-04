@@ -5,14 +5,13 @@ using UnityEngine;
 public class BossAttackHandler : MonoBehaviour
 {
     [SerializeField]
-    private float minAttackDelay;
-    [SerializeField]
-    private float maxAttackDelay;
-    [SerializeField]
     private int contactDamage;
 
     private IBossAttack[] allAttacks;
     private List<IBossAttack> currentStageAttacks;
+
+    private Vector3 targetPosition;
+    private bool isMoving;
 
     void Awake()
     {
@@ -30,12 +29,22 @@ public class BossAttackHandler : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if(isMoving)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, 5f * Time.deltaTime);
+        }
+    }
+
     IEnumerator AttackCycle()
     {
         while (true)
         {
-            float delay = Random.Range(minAttackDelay, maxAttackDelay);
+            isMoving = true;
+            targetPosition = transform.position + (Vector3)(Random.insideUnitCircle * 3f);
             yield return new WaitForSeconds(1f);
+            isMoving = false;
 
             IBossAttack attack = currentStageAttacks[Random.Range(0, currentStageAttacks.Count)];
             attack.Attack();
