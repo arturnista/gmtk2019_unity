@@ -355,15 +355,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6808620579313107620, guid: 9ce1b78d260e5f04b98b9f95236e9b62,
+    - target: {fileID: 2909698020418402808, guid: 9ce1b78d260e5f04b98b9f95236e9b62,
         type: 3}
-      propertyPath: stopTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6808620579313107620, guid: 9ce1b78d260e5f04b98b9f95236e9b62,
-        type: 3}
-      propertyPath: impulseForce
-      value: 5
+      propertyPath: stage
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ce1b78d260e5f04b98b9f95236e9b62, type: 3}

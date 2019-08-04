@@ -20,6 +20,7 @@ public class BossHealth : MonoBehaviour, IHealth
     private SpriteRenderer spriteRenderer;
 
     private BossAttackHandler attackHandler;
+    private PlayerSkillHandler playerSkillHandler;
 
     private int currentHealthPoints;
     
@@ -42,6 +43,8 @@ public class BossHealth : MonoBehaviour, IHealth
 
     void Start()
     {
+        playerSkillHandler = GameObject.FindObjectOfType<PlayerSkillHandler>();
+
         CurrentStage = -1;
         NextStage();
     }
@@ -102,13 +105,16 @@ public class BossHealth : MonoBehaviour, IHealth
     void NextStage()
     {
         CurrentStage += 1;
-        attackHandler.ChangeStage(CurrentStage);
 
         currentHealthPoints = stages[CurrentStage].Health;
         spriteRenderer.color = stages[CurrentStage].Color;
         spriteRenderer.sprite = stages[CurrentStage].Sprite;
 
         originalColor = spriteRenderer.color;
+
+        attackHandler.ChangeStage(CurrentStage);
+        playerSkillHandler.ChangeStage(CurrentStage);
+
     }
 
     IEnumerator DamageDisplayCycle()

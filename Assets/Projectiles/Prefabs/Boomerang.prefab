@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 0}
   speed: 8
-  attackDamage: 1
+  attackDamage: 2
   delay: 0
 --- !u!1 &5825213329203637935
 GameObject:

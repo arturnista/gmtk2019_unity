@@ -21,7 +21,7 @@ public class PlayerHealth : MonoBehaviour, IHealth
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
 
-    private bool isImmortal;
+    public bool IsImmortal { get; set; }
     
     public int TotalHealthPoints { get { return totalHealthPoints; } }
     public int CurrentHealthPoints { get { return currentHealthPoints; } }
@@ -49,7 +49,7 @@ public class PlayerHealth : MonoBehaviour, IHealth
 
     public void DealDamage(int damage, Transform damager)
     {
-        if(isImmortal) return;
+        if(IsImmortal) return;
 
         currentHealthPoints -= damage;
         StartCoroutine(FreezeMovementAndAttack(damager.position));
@@ -65,9 +65,16 @@ public class PlayerHealth : MonoBehaviour, IHealth
 
     }
 
+    public void AddHealth(int amount)
+    {
+        if(currentHealthPoints >= TotalHealthPoints) return;
+        
+        currentHealthPoints += amount;
+    }
+
     IEnumerator FreezeMovementAndAttack(Vector3 enemyPosition)
     {
-        isImmortal = true;
+        IsImmortal = true;
 
         playerPosition = transform.position;
         Vector3 impuseDirection = playerPosition - enemyPosition;
@@ -93,7 +100,7 @@ public class PlayerHealth : MonoBehaviour, IHealth
 
         spriteRenderer.color = originalColor;
 
-        isImmortal = false;
+        IsImmortal = false;
 
     }
 

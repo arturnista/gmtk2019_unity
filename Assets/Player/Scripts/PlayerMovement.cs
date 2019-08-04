@@ -15,11 +15,19 @@ public class PlayerMovement : MonoBehaviour
     public float Acceleration { get { return acceleration; } }
 
     private Vector3 targetVelocity;
+    private Vector3 moveVelocity;
+    public Vector3 MoveDirection { get; set; }
+    public Vector3 ExtraVelocity { get; set; }
 
     void Awake()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
 
+    }
+
+    void OnDisable()
+    {
+        rigidbody2d.velocity = Vector2.zero;
     }
 
     void Update() 
@@ -28,12 +36,15 @@ public class PlayerMovement : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
-        Vector2 direction = new Vector2 (horizontal, vertical);
-        direction.Normalize();
+        MoveDirection = (new Vector2 (horizontal, vertical)).normalized;
 
-        targetVelocity = direction * speed;
+        targetVelocity = MoveDirection * speed;
 
-        rigidbody2d.velocity = Vector3.MoveTowards(rigidbody2d.velocity, targetVelocity, acceleration * Time.deltaTime);
+        moveVelocity = Vector3.MoveTowards(moveVelocity, targetVelocity, acceleration * Time.deltaTime);
+        
+        rigidbody2d.velocity = moveVelocity + ExtraVelocity;
+
+        ExtraVelocity = Vector3.MoveTowards(ExtraVelocity, Vector3.zero, 150f * Time.deltaTime);
 
     }
 
