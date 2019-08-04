@@ -47,7 +47,7 @@ public class SwordFinisher : MonoBehaviour, IBossAttack
 
         }
 
-    Invoke("FinishAttack", 4.5f);
+    Invoke("FinishAttack", 4f);
 
     }
 
