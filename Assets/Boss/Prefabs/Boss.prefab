@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 2214645251725556735}
   - component: {fileID: 1822863645022554536}
   - component: {fileID: 8862319328018639586}
+  - component: {fileID: -8695304322437178578}
   m_Layer: 19
   m_Name: Boss
   m_TagString: Untagged
@@ -315,3 +316,18 @@ MonoBehaviour:
   swordPrefab: {fileID: 5253129032828781792, guid: dea0d4670e472c54494506fb2f8b7c73,
     type: 3}
   amount: 1
+--- !u!114 &-8695304322437178578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3786819218847601992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6af67f140d2b23f409bda8008953577b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stage: 0
+  swordPrefab: {fileID: 5253129032828781792, guid: 2313265dac651e94ca061169ce240534,
+    type: 3}
