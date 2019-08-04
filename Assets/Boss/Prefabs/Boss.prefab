@@ -346,6 +346,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d88f208e1294d54bae429574136c0b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stage: 0
+  stage: 4
   swordFinisherPrefab: {fileID: 9091651298028760810, guid: ed0f312bf3ca0e54f9df74eb0f71c547,
     type: 3}
