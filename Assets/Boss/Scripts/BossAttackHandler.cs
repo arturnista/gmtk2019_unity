@@ -15,12 +15,23 @@ public class BossAttackHandler : MonoBehaviour
     private Vector3 targetPosition;
     private bool isMoving;
 
+    private Coroutine attackCoroutine;
+
     void Awake()
     {
         allAttacks = GetComponents<IBossAttack>();
         playerHealth = GameObject.FindObjectOfType<PlayerHealth>();
+    }
 
-        StartCoroutine(AttackCycle());
+    void OnEnable()
+    {
+        attackCoroutine = StartCoroutine(AttackCycle());
+    }
+
+    void OnDisable()
+    {
+        StopCoroutine(attackCoroutine);
+        attackCoroutine = null;
     }
     
     public void ChangeStage(int stage)

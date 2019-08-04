@@ -18,12 +18,17 @@ public class PlayerSkillHandler : MonoBehaviour
         
     }
     
-    public void ChangeStage(int stage)
+    public IPlayerSkill ChangeStage(int stage)
     {
         foreach (var skill in skills)
         {
-            if(skill.Stage <= stage) skill.Enabled = true;
-            else skill.Enabled = false;
+            if(skill.Stage == stage)
+            {
+                skill.Enabled = true;
+                return skill;
+            }
         }
+
+        return null;
     }
 }

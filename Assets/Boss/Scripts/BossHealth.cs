@@ -19,8 +19,7 @@ public class BossHealth : MonoBehaviour, IHealth
 
     private SpriteRenderer spriteRenderer;
 
-    private BossAttackHandler attackHandler;
-    private PlayerSkillHandler playerSkillHandler;
+    private GameController gameController;
 
     private int currentHealthPoints;
     
@@ -34,21 +33,14 @@ public class BossHealth : MonoBehaviour, IHealth
 
     void Awake()
     {
-        CurrentStage = 0;
-        currentHealthPoints = stages[CurrentStage].Health;
-
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        attackHandler = GetComponent<BossAttackHandler>();
     }
 
     void Start()
     {
-        playerSkillHandler = GameObject.FindObjectOfType<PlayerSkillHandler>();
-
-        CurrentStage = -1;
-        NextStage();
+        gameController = GameController.main;        
     }
-
+    
     public void DealDamage(int damage, Transform damager)
     {
         if(isImmortal) return;
@@ -57,8 +49,8 @@ public class BossHealth : MonoBehaviour, IHealth
 
         if (currentHealthPoints <= 0) 
         {
-            isImmortal = true;
-            StartCoroutine(ChangeStageCycle());
+            currentHealthPoints = 1000;
+            gameController.NextStage();
         }
         else
         {
@@ -69,10 +61,31 @@ public class BossHealth : MonoBehaviour, IHealth
 
     }
 
+    public void ChangeStage(int stage)
+    {
+        bool changedStage = CurrentStage != stage;
+        CurrentStage = stage;
+
+        currentHealthPoints = stages[CurrentStage].Health;
+        originalColor = spriteRenderer.color;
+
+        if(changedStage) 
+        {
+            StartCoroutine(ChangeStageCycle());
+        }
+        else
+        {
+            currentHealthPoints = stages[CurrentStage].Health;
+            spriteRenderer.color = stages[CurrentStage].Color;
+            spriteRenderer.sprite = stages[CurrentStage].Sprite;
+        }
+
+    }
+
     IEnumerator ChangeStageCycle()
     {
 
-        attackHandler.enabled = false;
+        isImmortal = true;
 
         float changeStageTime = 2f;
         float amount = 10;
@@ -88,32 +101,18 @@ public class BossHealth : MonoBehaviour, IHealth
             }
             else
             {
-                spriteRenderer.color = stages[CurrentStage + 1].Color;
-                spriteRenderer.sprite = stages[CurrentStage + 1].Sprite;
+                spriteRenderer.color = stages[CurrentStage - 1].Color;
+                spriteRenderer.sprite = stages[CurrentStage - 1].Sprite;
             }
 
             yield return new WaitForSeconds(time);
         }
 
-        NextStage();
-
-        isImmortal = false;
-        attackHandler.enabled = true;
-
-    }
-
-    void NextStage()
-    {
-        CurrentStage += 1;
-
         currentHealthPoints = stages[CurrentStage].Health;
         spriteRenderer.color = stages[CurrentStage].Color;
         spriteRenderer.sprite = stages[CurrentStage].Sprite;
-
-        originalColor = spriteRenderer.color;
-
-        attackHandler.ChangeStage(CurrentStage);
-        playerSkillHandler.ChangeStage(CurrentStage);
+        
+        isImmortal = false;
 
     }
 

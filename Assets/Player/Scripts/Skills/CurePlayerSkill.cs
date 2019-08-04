@@ -5,6 +5,19 @@ using UnityEngine;
 public class CurePlayerSkill : MonoBehaviour, IPlayerSkill
 {
     
+    [SerializeField]
+    private new string name;
+    public string Name { get { return name; } }
+
+    [SerializeField]
+    [Multiline]
+    private string description;
+    public string Description { get { return description; } }
+
+    [SerializeField]
+    private Sprite icon;
+    public Sprite Icon { get { return icon; } }
+    
     public bool Enabled { get; set; }
     
     [SerializeField]

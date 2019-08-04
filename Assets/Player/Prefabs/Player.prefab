@@ -226,6 +226,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05d94d87142e7b640a2a01e175399144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: Cure
+  description: 'Focus your healing power to cure your health.
+
+
+    Hold [E] to heal.
+
+
+    You
+    cannot move while healing.'
+  icon: {fileID: 21300000, guid: e2b74b4493156524d9f82b23f3352e66, type: 3}
   stage: 1
   chargeTime: 2
 --- !u!114 &2909698020418402808
@@ -240,6 +250,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e95e09cc41e682488cea2d6d4ade4fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: Dash
+  description: 'High movement skill to increase your mobility in the battle field.
+
+
+    Press
+    [SPACE] to dash.
+
+
+    You become invunerable while dashing.'
+  icon: {fileID: 21300000, guid: acb53b1735db2e64ba4fe49c74433a36, type: 3}
   stage: 0
   speed: 35
   cooldown: 2
