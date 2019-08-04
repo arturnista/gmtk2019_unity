@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordFinisher : MonoBehaviour, IBossAttack
+public class SwordFlyingToPlayer : MonoBehaviour, IBossAttack
 {
 
     public bool Finished { get; private set; }
