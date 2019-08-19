@@ -5163,3 +5163,4 @@ MonoBehaviour:
   multiplier: 2
   duration: 5
   cooldown: 15
+  audioClip: {fileID: 8300000, guid: ea97cf132dfbb1342bfbc166faaa7190, type: 3}

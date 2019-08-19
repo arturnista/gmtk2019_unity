@@ -10,9 +10,13 @@ public class SpikeCollision : MonoBehaviour, IHealth
 
     public int TotalHealthPoints { get; private set; }
     private int currentHealth;
+    [SerializeField]
+    private AudioClip breakClip;
+    private AudioSource audioSource;
 
     void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         TotalHealthPoints = 3;
         currentHealth = TotalHealthPoints;
     }
@@ -31,6 +35,8 @@ public class SpikeCollision : MonoBehaviour, IHealth
         currentHealth -= damage;
         if(currentHealth < 0)
         {
+            // audioSource.PlayOneShot(breakClip, 1f);
+            AudioSource.PlayClipAtPoint(breakClip, transform.position, audioSource.volume);
             Destroy(gameObject);
         }
     }

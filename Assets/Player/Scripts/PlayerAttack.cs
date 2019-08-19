@@ -12,11 +12,12 @@ public class PlayerAttack : MonoBehaviour
     private float cooldown = 0.5f;
     public float Cooldown { get { return cooldown; } set { cooldown = value;} }
     
-    private Coroutine fireCoroutine;
+    private bool isFiring;
+    private float fireDelay;
     
     void Awake()
     {
-        
+        fireDelay = 0;
     }
 
     void OnDisable()
@@ -29,30 +30,34 @@ public class PlayerAttack : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0)) 
         {
-            fireCoroutine = StartCoroutine(FireCycle());
+            StartFiring();
         }
         else if (Input.GetMouseButtonUp(0)) 
         {
             StopFiring();
         }
+    
+        FireCheck();
 
+    }
+
+    void StartFiring()
+    {
+        isFiring = true;
     }
 
     void StopFiring()
     {
-        if(fireCoroutine != null)
-        {
-            StopCoroutine(fireCoroutine);
-            fireCoroutine = null;
-        }
+        isFiring = false;
     }
 
-    IEnumerator FireCycle()
+    void FireCheck()
     {
-        while (true)
+        fireDelay += Time.deltaTime;
+        if(fireDelay > cooldown && isFiring)
         {
+            fireDelay = 0f;
             Fire();
-            yield return new WaitForSeconds(cooldown);
         }
     }
 

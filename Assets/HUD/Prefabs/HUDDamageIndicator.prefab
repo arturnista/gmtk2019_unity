@@ -88,4 +88,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f5121c262addf54db71cb4d8c765d9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageColor: {r: 1, g: 0, b: 0, a: 0}
+  damageColor: {r: 1, g: 0.19607843, b: 0.19607843, a: 0.39215687}
+  healColor: {r: 0, g: 1, b: 0.047595263, a: 0.39215687}

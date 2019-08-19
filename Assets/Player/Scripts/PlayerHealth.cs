@@ -103,7 +103,7 @@ public class PlayerHealth : MonoBehaviour, IHealth
         playerPosition = transform.position;
         playerMovement.enabled = false;
         playerAttack.enabled = false;
-        if(enemyPosition == Vector3.zero)
+        if(enemyPosition != Vector3.zero)
         {
             Vector3 impuseDirection = playerPosition - enemyPosition;
             rigidbody2d.velocity = impuseDirection * impulseForce;

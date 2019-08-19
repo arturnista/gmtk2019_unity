@@ -7,6 +7,8 @@ public class HUDDamageIndicator : MonoBehaviour
 {
     [SerializeField]
     private Color damageColor;
+    [SerializeField]
+    private Color healColor;
 
     private PlayerHealth playerHealth;
 
@@ -26,16 +28,22 @@ public class HUDDamageIndicator : MonoBehaviour
     {
         if(playerHealth && lastHealth != playerHealth.CurrentHealthPoints)
         {
+            if(lastHealth < playerHealth.CurrentHealthPoints)
+            {
+                StartCoroutine(FadeOut(healColor));
+            }
+            else 
+            {
+                StartCoroutine(FadeOut(damageColor));
+            }
             lastHealth = playerHealth.CurrentHealthPoints;
-
-            indicator.color = damageColor;
-            StartCoroutine(FadeOut());
         }
     }
 
-    IEnumerator FadeOut()
+    IEnumerator FadeOut(Color initialColor)
     {
-        Color color = damageColor;
+        indicator.color = initialColor;
+        Color color = initialColor;
         while (color.a > 0f)
         {
             color.a -= Time.deltaTime;

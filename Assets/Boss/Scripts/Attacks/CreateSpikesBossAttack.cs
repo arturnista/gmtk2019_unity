@@ -40,14 +40,23 @@ public class CreateSpikesBossAttack : MonoBehaviour, IBossAttack
 
         Vector2 halfMap = mapSize * .5f;
 
-        for (int i = 0; i < amount; i++)
+        int created = 0;
+        int tries = 0;
+        while(created < amount && tries < 10)
         {
+            tries++;
+
             Vector3 spawnPosition = new Vector3(
                 Random.Range(-halfMap.x, halfMap.x),
                 Random.Range(-halfMap.y, halfMap.y),
                 0f
             );
-            Instantiate(spikePrefab, spawnPosition, Quaternion.identity);            
+
+            if(Vector3.Distance(spawnPosition, playerHealth.transform.position) > 1.5f)
+            {
+                Instantiate(spikePrefab, spawnPosition, Quaternion.identity);
+                created++;            
+            }
         }
 
         Finished = true;

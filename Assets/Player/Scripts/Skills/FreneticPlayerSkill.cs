@@ -31,6 +31,9 @@ public class FreneticPlayerSkill : MonoBehaviour, IPlayerSkill
     [SerializeField]
     private float cooldown = 15f;
     private float cooldownPassed;
+    [SerializeField]
+    private AudioClip audioClip;
+    private AudioSource audioSource;
 
     private float originalAttackSpeed;
 
@@ -39,6 +42,7 @@ public class FreneticPlayerSkill : MonoBehaviour, IPlayerSkill
     
     void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         playerAttack = GetComponent<PlayerAttack>();
         cooldownPassed = cooldown;
     }
@@ -50,6 +54,7 @@ public class FreneticPlayerSkill : MonoBehaviour, IPlayerSkill
         cooldownPassed += Time.deltaTime;
         if(Input.GetKeyDown(KeyCode.F) && cooldownPassed >= cooldown)
         {
+            audioSource.PlayOneShot(audioClip, 1f);
             cooldownPassed = 0f;
             StartCoroutine(FreneticCycle());
         }

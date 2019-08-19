@@ -264,11 +264,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6740385368032722544}
     m_Modifications:
-    - target: {fileID: 9079550348086634345, guid: e697940e818b9b647882ec47ae49ec05,
-        type: 3}
-      propertyPath: m_Name
-      value: HealthContainer
-      objectReference: {fileID: 0}
     - target: {fileID: 7471881635336379693, guid: e697940e818b9b647882ec47ae49ec05,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -374,6 +369,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9079550348086634345, guid: e697940e818b9b647882ec47ae49ec05,
+        type: 3}
+      propertyPath: m_Name
+      value: HealthContainer
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e697940e818b9b647882ec47ae49ec05, type: 3}
 --- !u!224 &1688942749638491207 stripped
@@ -389,11 +389,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6740385368032722544}
     m_Modifications:
-    - target: {fileID: 2061905161962426712, guid: 3b3f6dd229b65204db91594d1b613c14,
-        type: 3}
-      propertyPath: m_Name
-      value: HUDDamageIndicator
-      objectReference: {fileID: 0}
     - target: {fileID: 4775914819624097114, guid: 3b3f6dd229b65204db91594d1b613c14,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -499,25 +494,10 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 7277086313892053526, guid: 3b3f6dd229b65204db91594d1b613c14,
+    - target: {fileID: 2061905161962426712, guid: 3b3f6dd229b65204db91594d1b613c14,
         type: 3}
-      propertyPath: damageColor.a
-      value: 0.39215687
-      objectReference: {fileID: 0}
-    - target: {fileID: 7277086313892053526, guid: 3b3f6dd229b65204db91594d1b613c14,
-        type: 3}
-      propertyPath: damageColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7277086313892053526, guid: 3b3f6dd229b65204db91594d1b613c14,
-        type: 3}
-      propertyPath: damageColor.g
-      value: 0.19607843
-      objectReference: {fileID: 0}
-    - target: {fileID: 7277086313892053526, guid: 3b3f6dd229b65204db91594d1b613c14,
-        type: 3}
-      propertyPath: damageColor.b
-      value: 0.19607843
+      propertyPath: m_Name
+      value: HUDDamageIndicator
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b3f6dd229b65204db91594d1b613c14, type: 3}
