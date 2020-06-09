@@ -4928,7 +4928,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.3
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5041,7 +5041,7 @@ MonoBehaviour:
   totalHealthPoints: 10
   stopTime: 1
   impulseForce: 5
-  damageClip: {fileID: 8300000, guid: 949aca87a160abe4986a52af31b685dc, type: 3}
+  damageClip: {fileID: 8300000, guid: 1761ca7b1addb4a44b5a440b2e5d21bf, type: 3}
 --- !u!114 &659258165303850076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5093,7 +5093,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: e2b74b4493156524d9f82b23f3352e66, type: 3}
   stage: 1
   chargeTime: 1
-  audioClip: {fileID: 8300000, guid: e045e443fa2bbdd44bbc14e3828738f2, type: 3}
+  audioClip: {fileID: 8300000, guid: 44cf1291b17dba54db0c8ec6d2937481, type: 3}
 --- !u!114 &2909698020418402808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5121,7 +5121,7 @@ MonoBehaviour:
   cooldown: 2
   ghostPrefab: {fileID: 3827354343905590487, guid: 7291c64008b141948a00309af0ac3f5f,
     type: 3}
-  audioClip: {fileID: 8300000, guid: b6774053532894144871213a4c0354a8, type: 3}
+  audioClip: {fileID: 8300000, guid: f3158deb9c4963b4388046172d8de96f, type: 3}
 --- !u!114 &7349115460218278786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5163,4 +5163,4 @@ MonoBehaviour:
   multiplier: 2
   duration: 5
   cooldown: 15
-  audioClip: {fileID: 8300000, guid: ea97cf132dfbb1342bfbc166faaa7190, type: 3}
+  audioClip: {fileID: 8300000, guid: 8fe13e3b400d7954097139b2ca5e417a, type: 3}

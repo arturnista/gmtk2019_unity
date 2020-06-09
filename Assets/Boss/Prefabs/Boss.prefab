@@ -327,10 +327,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contactDamage: 2
   movementAudios:
-  - {fileID: 8300000, guid: d161bc0db19604b4ba6e8762dda80f5f, type: 3}
-  - {fileID: 8300000, guid: 08f3809375cc5634fbe51724dd21961f, type: 3}
-  - {fileID: 8300000, guid: 501c5f3a826191647b2d3aa0cf9f77dd, type: 3}
-  - {fileID: 8300000, guid: af541b6a15b19d14bb3dcb64fbc1b8f4, type: 3}
+  - {fileID: 8300000, guid: bee06aeb335376143ac0a8bb7f8a6513, type: 3}
+  - {fileID: 8300000, guid: ca70c185ef9279741a0405511eef6654, type: 3}
+  - {fileID: 8300000, guid: 08aabda21665ab346905995884783df9, type: 3}
+  - {fileID: 8300000, guid: bf556e3af001d3b418b956c5d14854b6, type: 3}
 --- !u!114 &4763109899402280414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,7 +363,7 @@ MonoBehaviour:
   swordPrefab: {fileID: 5253129032828781792, guid: 2313265dac651e94ca061169ce240534,
     type: 3}
   amount: 7
-  audioClip: {fileID: 8300000, guid: ea6590795d6293d488cce33442fcb1a7, type: 3}
+  audioClip: {fileID: 8300000, guid: fba0d34c4e34b4043bed12490b9f45fa, type: 3}
 --- !u!114 &6092418906510786452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,7 +413,7 @@ MonoBehaviour:
   swordPrefab: {fileID: 5253129032828781792, guid: 2313265dac651e94ca061169ce240534,
     type: 3}
   amount: 14
-  audioClip: {fileID: 8300000, guid: ea6590795d6293d488cce33442fcb1a7, type: 3}
+  audioClip: {fileID: 8300000, guid: fba0d34c4e34b4043bed12490b9f45fa, type: 3}
 --- !u!114 &8862319328018639586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,7 +448,7 @@ MonoBehaviour:
   indicatorPrefab: {fileID: 4303085769134570232, guid: 8ceb8f6a33913284d8037fc278956c28,
     type: 3}
   delay: 0.3
-  audioClip: {fileID: 8300000, guid: 1a3a24650337f024c9b5bbbae340c6cc, type: 3}
+  audioClip: {fileID: 8300000, guid: 1e1723cf78c0e124a89b872a82ddb746, type: 3}
 --- !u!114 &7146834368189681947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,4 +481,4 @@ MonoBehaviour:
   stage: 4
   swordFinisherPrefab: {fileID: 9091651298028760810, guid: ed0f312bf3ca0e54f9df74eb0f71c547,
     type: 3}
-  audioClip: {fileID: 8300000, guid: 4142d881b9873f245925e03f133c8d47, type: 3}
+  audioClip: {fileID: 8300000, guid: 17877554a1c5cb34eac7f4c9957cf423, type: 3}

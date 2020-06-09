@@ -62,7 +62,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.75
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  breakClip: {fileID: 8300000, guid: 16a46537a5f54ce4181b8abbee7ccda2, type: 3}
+  breakClip: {fileID: 8300000, guid: f5334ab4d09a15e49845290a46b593b9, type: 3}
 --- !u!1 &584251070986742518
 GameObject:
   m_ObjectHideFlags: 0
